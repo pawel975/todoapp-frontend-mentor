@@ -1,0 +1,16 @@
+.add-todo {
+  width: 95%;
+  height: auto;
+}
+
+.add-todo label {
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+/*# sourceMappingURL=AddTodo.css.map */
