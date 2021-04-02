@@ -5,16 +5,17 @@ export const ToDoContext = createContext()
 export const ToDoProvider = props => {
     const [tasks, setTasks] = useState([
         {
-            name: "1241253",
+            name: "Create a todo list",
             active: true,
             completed: true,
         },
         {
-            name: "sfashaw",
+            name: "Style checkboxes",
             active: true,
             completed: true,
         }
     ])
+
 
     return(
         <ToDoContext.Provider value={[tasks, setTasks]}>

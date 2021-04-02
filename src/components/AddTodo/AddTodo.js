@@ -4,10 +4,10 @@ import styled from 'styled-components';
 const AddTodoWrapper = styled.div`
     width: 100%;
     height: auto;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    /* box-shadow: 0px 10px 30px 18px rgba(0,0,0,0.1); */
     label {
         border-radius:6px;
-        overflow: hidden;
+        /* overflow: hidden; */
         width: 100%;
         height:3em;
         display: flex;
@@ -28,7 +28,7 @@ const AddTodoWrapper = styled.div`
             opacity: 0.8;
             font-size: 12px;
             font-weight: 400;
-              font-family: 'Josefin Sans', sans-serif;
+            font-family: 'Josefin Sans', sans-serif;
         }
     }
 `
