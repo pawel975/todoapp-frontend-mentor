@@ -9,37 +9,45 @@ const TaskListWrapper = styled.div `
     width: 100%;
     height:auto;
     box-shadow: 0px 15px 40px 10px rgba(0,0,0,0.1);
-    outline: solid 2px green;
     display:flex;
     flex-direction: column;
     align-items:stretch;
-    ul {
+    section {
+        height:10px;
+        display:flex;
+        justify-content: space-between;
+        padding:1em 1em;
+        position: relative;
+        align-items:center;
+        span {
+            font-size: 12px;
+            color: ${props=> props.theme.light.completed};
+        }
+    }
+`
+
+const TaskFilters = styled.ul`
+        background-color:white;
+        box-shadow: 0px 15px 40px 10px rgba(0,0,0,0.1);
+        border-radius: 5px;
         display: flex;
         font-size: 14px;
         font-weight:700;
-        width: auto;
-        height:auto;
         list-style:none;
         align-items: center;
         justify-content:center;
-        outline: solid 2px yellow;
-        padding: 0em;
-        margin:0;
+        padding: 0;
+        width:100%;
         li {
             margin:1em;
-            
-            /* outline: solid 2px blue; */
+            color:${props=> props.theme.light.textFilters};
+            opacity:0.7;
         }
-    }
-    section {
-         outline: solid 2px blue;
-        /* padding: 1em; */
-        display:flex;
-        justify-content: space-around;
-        span {
-            font-size: 12px;
+        li:hover{
+            opacity:1;
+            cursor: pointer;
+            color:hsl(220, 98%, 61%);
         }
-    }
 `
 
 const TaskList = () => {
@@ -51,25 +59,23 @@ const TaskList = () => {
 
     ))
 
-//Utworzyć 2 ul dla wersji mobilnej, osobno na dla clear i items left i osobno dla reszty
-
     return(
-        <TaskListWrapper>
+        <>
             {AllTasks.length > 0 ? 
-                <div>
+                <TaskListWrapper>
                     {AllTasks}
                     <section>
                         <span>{`${AllTasks.length} items left`}</span>
                         <span>Clear Completed</span>
                     </section>
-                    <ul>
+                </TaskListWrapper>
+                    : null}
+                <TaskFilters>
                         <li>All</li>
                         <li>Active</li>
                         <li>Completed</li>
-                    </ul>
-                </div>
-                    : null}
-        </TaskListWrapper>
+                </TaskFilters>
+        </>
     )
 }
 

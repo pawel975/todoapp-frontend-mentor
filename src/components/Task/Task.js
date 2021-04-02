@@ -36,6 +36,7 @@ const TaskWrapper = styled.div`
         
     }
 `
+
 const Task = ({name, active, completed}) => {
     return(
         <TaskWrapper>

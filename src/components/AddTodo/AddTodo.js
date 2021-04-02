@@ -7,7 +7,6 @@ const AddTodoWrapper = styled.div`
     /* box-shadow: 0px 10px 30px 18px rgba(0,0,0,0.1); */
     label {
         border-radius:6px;
-        /* overflow: hidden; */
         width: 100%;
         height:3em;
         display: flex;
@@ -25,7 +24,7 @@ const AddTodoWrapper = styled.div`
             width:100%;
             border: none;
             text-align: left;
-            opacity: 0.8;
+            color: ${props=> props.theme.light.DarkGrayishBlue};
             font-size: 12px;
             font-weight: 400;
             font-family: 'Josefin Sans', sans-serif;
