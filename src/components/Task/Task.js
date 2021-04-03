@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext, useState } from 'react';
 import styled from 'styled-components'
-import close from '../../images/icon-cross.svg';
+import { ToDoContext } from '../ToDoContext/ToDoContext';
 
 const TaskWrapper = styled.div`
     width: 100%;
@@ -29,21 +29,46 @@ const TaskWrapper = styled.div`
             font-size: 12px;
             font-weight:700;
             /* outline:2px solid purple; */
+            padding:1em; 
         }
         svg{
-            margin: 0 1em 0 0;
+            margin: 1em;
+            padding:0.6em;
+            overflow:hidden;
+            /* outline: 2px solid green; */
         }
         
     }
 `
 
-const Task = ({name, active, completed}) => {
+const Task = ({id,name, completed}) => {
+
+const [tasks, setTasks] = useContext(ToDoContext)
+const [checked, setChecked] = useState(false) 
+
+const handleChecked = (e) => {
+    setChecked(!checked)
+    const index = e.target.parentNode.parentNode.id
+    const tempTasks = [...tasks]
+    setTasks(
+    tempTasks.map(item => {
+        if (item.id === index) {
+        return {
+            ...item,
+            completed: !completed,
+        }
+        } else {
+        return item
+        }
+    })
+)
+}
     return(
-        <TaskWrapper>
+        <TaskWrapper id={id} completed={completed}>
             <label>
-                <input type="radio"  />
-                <span>{name}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
+                <input onClick={handleChecked} type="radio" checked={checked} />
+                <span>{name}{String(Boolean(completed))}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17"><path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
             </label>
      </TaskWrapper>
     )

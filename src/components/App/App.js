@@ -16,7 +16,6 @@ const theme = {
   },
   dark : {
     background: 'hsl(235, 21%, 11%)',
-    // VeryDarkDesaturatedBlue: 'hsl(235, 24%, 19%)',
     text0: 'hsl(234, 39%, 85%)',
     text1: 'hsl(236, 33%, 92%)',
     text2: 'hsl(234, 11%, 52%)',
@@ -28,8 +27,7 @@ const theme = {
 const AppWrapper = styled.div`
   
   font-family: 'Josefin Sans', sans-serif;
-  height: 100vh;
-  outline: 5px solid green;
+  min-height: 100vh;
   width: auto;
   position: relative;
   display: flex;

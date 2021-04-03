@@ -21,7 +21,7 @@ const TaskListWrapper = styled.div `
         align-items:center;
         span {
             font-size: 12px;
-            color: ${props=> props.theme.light.completed};
+            color: ${props=> props.theme.light.clear};
         }
     }
 `
@@ -50,18 +50,24 @@ const TaskFilters = styled.ul`
         }
 `
 
+const DragAndDrop = styled.div`
+        h5{
+        color: ${props => props.theme.light.clear};
+        font-weight: 400;
+        }
+`
+
 const TaskList = () => {
 
     const [tasks, setTasks] = useContext(ToDoContext)
 
     const AllTasks = tasks.map(task=>(
-        <Task name={task.name} active={task.active} completed={task.completed}/>
-
+        <Task id={task.id} key={task.id} name={task.name} completed={task.completed}/>
     ))
-
     return(
         <>
             {AllTasks.length > 0 ? 
+            <>
                 <TaskListWrapper>
                     {AllTasks}
                     <section>
@@ -69,12 +75,16 @@ const TaskList = () => {
                         <span>Clear Completed</span>
                     </section>
                 </TaskListWrapper>
-                    : null}
                 <TaskFilters>
-                        <li>All</li>
-                        <li>Active</li>
-                        <li>Completed</li>
+                    <li>All</li>
+                    <li>Active</li>
+                    <li>Completed</li>
                 </TaskFilters>
+                <DragAndDrop>
+                    <h5>Drag and drop to reorder the list</h5>
+                </DragAndDrop>
+                </>
+                    : null}
         </>
     )
 }
