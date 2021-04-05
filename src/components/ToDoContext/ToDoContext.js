@@ -6,6 +6,7 @@ export const ToDoProvider = props => {
     const [tasks, setTasks] = useState([])
     const [filteredTasks, setFilteredTasks] = useState([])
     const [status, setStatus] = useState(0)
+    const [theme, setTheme] = useState("light")
     return(
         <ToDoContext.Provider value={[
             tasks, 
@@ -13,7 +14,9 @@ export const ToDoProvider = props => {
             filteredTasks, 
             setFilteredTasks,
             status,
-            setStatus
+            setStatus,
+            theme,
+            setTheme
             ]}>
             {props.children}
         </ToDoContext.Provider>

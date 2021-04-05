@@ -21,7 +21,10 @@ const TaskListWrapper = styled.div `
         align-items:center;
         span {
             font-size: 12px;
-            color: ${props=> props.theme.light.clear};
+            color: ${props=> props.theme.clear};
+        }
+        span.clear-completed {
+            cursor :pointer;
         }
     }
 `
@@ -39,18 +42,15 @@ const TaskFilters = styled.ul`
         width:100%;
         li {
             margin:1em;
-            color:${props=> props.theme.light.textFilters};
-            opacity:0.7;
+            color:${props=> props.theme.clear};
         }
         li:hover{
-            opacity:1;
             cursor: pointer;
-            color:hsl(220, 98%, 61%);
         }
 `
 const DragAndDrop = styled.div`
         h5{
-        color: ${props => props.theme.light.clear};
+        color: ${props => props.theme.clear};
         font-weight: 400;
         }
 `
@@ -90,6 +90,7 @@ const TaskList = () => {
                 break;
             }
     }, [setFilteredTasks,tasks,status]);
+
     return(
         <>
             {AllTasks.length > 0 ? 
@@ -98,13 +99,13 @@ const TaskList = () => {
                     {allFilteredTasks}
                     <section>
                         <span>{`${allFilteredTasks.length} items left`}</span>
-                        <span onClick={handleCompletedDelete}>Clear Completed</span>
+                        <span className="clear-completed" onClick={handleCompletedDelete}>Clear Completed</span>
                     </section>
                 </TaskListWrapper>
                 <TaskFilters>
-                    <li value={0} onClick={statusHandler}>All</li>
-                    <li value={1} onClick={statusHandler}>Active</li>
-                    <li value={2} onClick={statusHandler}>Completed</li>
+                    <li value={0} style={ status === 0? {color:"hsl(220, 98%, 61%)"}: null} onClick={statusHandler}>All</li>
+                    <li value={1} style={ status === 1? {color:"hsl(220, 98%, 61%)"}: null} onClick={statusHandler}>Active</li>
+                    <li value={2} style={ status === 2? {color:"hsl(220, 98%, 61%)"}: null} onClick={statusHandler}>Completed</li>
                 </TaskFilters>
                 <DragAndDrop>
                     <h5>Drag and drop to reorder the list</h5>

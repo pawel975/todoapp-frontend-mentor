@@ -8,6 +8,7 @@ const AddTodoWrapper = styled.div`
     height: auto;
     box-shadow: 0 5px 20px 1px rgba(0,0,0,0.1);
     form {
+        cursor: pointer;
         border-radius:6px;
         width: 100%;
         height:3em;
@@ -15,21 +16,39 @@ const AddTodoWrapper = styled.div`
         flex-direction: row;
         justify-content: center;
         background-color: white;
-        #set-task {
-            align-self: center;
-            height: 100%;
-            width: 2em;
-            margin: 17px 10px 17px 16px;
-            opacity: 0.4;
+        label {
+            display:flex;
+            height:100%;
+            width:50px;
         }
-        #create-task{
+        .set-task {
+            display:none;
+        }
+        .create-task{
+            cursor: pointer;
             width:100%;
             border: none;
             text-align: left;
-            color: ${props=> props.theme.light.DarkGrayishBlue};
+            color: ${props=> props.theme.clear};
             font-size: 12px;
             font-weight: 400;
             font-family: 'Josefin Sans', sans-serif;
+        }
+        .checkmark {
+            cursor: pointer;
+            border: 1px solid rgba(201, 203, 207, 1);
+            align-self: center;
+            height: 20px;
+            width: 20px;
+            border-radius:50%;
+            margin: 17px 10px 17px 18px;
+            opacity: 1;
+            transition:2s;
+        }
+
+        .checkmark:hover {
+            background: linear-gradient(120deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+            transition:2s ease-in;
         }
     }
 `
@@ -62,9 +81,11 @@ function AddTodo() {
         <AddTodoWrapper>
             <div>
                 <form autoComplete="off" onSubmit={handleSubmit}>
-                    <input type="radio" id="set-task" onClick={handleSubmit} checked={false}/>
-                    <input value={taskValue} onChange={handleTaskValue} type="text" placeholder='Create a new todo...' id="create-task"/>
-
+                    <label>
+                        <input type="radio" className="set-task" onClick={handleSubmit} checked={false}/>
+                        <span className="checkmark"></span>
+                    </label>
+                    <input value={taskValue} onChange={handleTaskValue} type="text" placeholder='Create a new todo...' className="create-task"/>
                 </form>
              </div>
         </AddTodoWrapper>

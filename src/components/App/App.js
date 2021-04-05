@@ -1,27 +1,32 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import AddTodo from '../AddTodo/AddTodo';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from '../Header/Header';
 import Image from '../../../src/images/bg-mobile-light.jpg';
 import TaskList from '../TaskList/TaskList';
-import {ToDoProvider} from '../ToDoContext/ToDoContext'
+import {ToDoContext, ToDoProvider} from '../ToDoContext/ToDoContext'
 
 
-const theme = {
-  light: {
+const LightTheme = {
+
     background: 'hsl(0, 0%, 98%)',
     finished: 'hsl(233, 11%, 84%)',
     clear: 'hsl(236, 9%, 61%)',
     textFilters: 'hsl(235, 19%, 35%)',
-  },
-  dark : {
+}
+
+const DarkTheme = {
     background: 'hsl(235, 21%, 11%)',
-    text0: 'hsl(234, 39%, 85%)',
-    text1: 'hsl(236, 33%, 92%)',
-    text2: 'hsl(234, 11%, 52%)',
+    finished: 'hsl(234, 39%, 85%)',
+    clear: 'hsl(236, 33%, 92%)',
+    textFilters: 'hsl(234, 11%, 52%)',
     text3: 'hsl(233, 14%, 35%)',
     section: 'hsl(237, 14%, 26%)',
 }
+
+const themes = {
+  light: LightTheme,
+  dark: DarkTheme,
 }
 
 const AppWrapper = styled.div`
@@ -33,7 +38,7 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${props=> props.theme.light.background};
+  background-color: ${props=> props.theme.background};
   img {
       width: 100%;
       height: auto;
@@ -51,9 +56,10 @@ const AppWrapper = styled.div`
 
 
 function App() {
+  const [theme, setTheme] = useContext(ToDoContext)
   return (
-    <ThemeProvider theme={theme}>
-      <ToDoProvider>
+    <ThemeProvider theme={themes[theme]}>
+      <ToDoProvider theme={theme} setTheme={setTheme}>
         <AppWrapper>
           <img src={Image} alt=""/>
           <main>
