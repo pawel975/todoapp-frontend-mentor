@@ -6,7 +6,7 @@ import { v4 as uuidv4} from "uuid";
 const AddTodoWrapper = styled.div`
     width: 100%;
     height: auto;
-    /* box-shadow: 0px 10px 30px 18px rgba(0,0,0,0.1); */
+    box-shadow: 0 5px 20px 1px rgba(0,0,0,0.1);
     form {
         border-radius:6px;
         width: 100%;
@@ -19,7 +19,7 @@ const AddTodoWrapper = styled.div`
             align-self: center;
             height: 100%;
             width: 2em;
-            margin: 17px 10px 17px 23px;
+            margin: 17px 10px 17px 16px;
             opacity: 0.4;
         }
         #create-task{
@@ -35,23 +35,24 @@ const AddTodoWrapper = styled.div`
 `
 function AddTodo() {
 
-    const [tasks, setTasks] = useContext(ToDoContext)
+    const [tasks, setTasks ] = useContext(ToDoContext)
     const [taskValue, setTaskValue] = useState('')
 
     const handleSubmit = (e)=> {
         e.preventDefault()
         if(taskValue === "") return
-        setTasks(prevTasks => ([
-            ...prevTasks,
+        // console.log(tasks)
+        setTasks([
+            ...tasks,
             {
                 id: uuidv4(),
                 name: taskValue,
                 completed:false,
             },
-        ]))
+        ])
         setTaskValue("")
     }
-    
+
     const handleTaskValue = (e)=> {
         e.preventDefault()
         setTaskValue(e.target.value)
