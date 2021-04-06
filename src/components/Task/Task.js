@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components'
 import { ToDoContext } from '../ToDoContext/ToDoContext';
-import {Draggable} from 'react-beautiful-dnd';
 
 const TaskWrapper = styled.div`
     box-sizing: border-box;
@@ -102,7 +101,6 @@ const handleDelete = (e) => {
     }
 
     return(
-     <Draggable>
         <TaskWrapper id={id} completed={completed}>
             <label className="custom-checkbox">
                 <input onClick={handleChecked} type="radio" checked={completed} />
@@ -113,7 +111,6 @@ const handleDelete = (e) => {
             </label>
             <svg onClick={handleDelete} xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path fill="#494C6B" fillRule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/></svg>
      </TaskWrapper>
-    </Draggable>
     )
 }
 

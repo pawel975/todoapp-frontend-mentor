@@ -6,7 +6,6 @@ import ImageLight from '../../../src/images/bg-mobile-light.jpg';
 import ImageDark from '../../../src/images/bg-mobile-dark.jpg';
 import TaskList from '../TaskList/TaskList';
 import {ToDoProvider} from '../ToDoContext/ToDoContext';
-import { DragDropContext } from 'react-beautiful-dnd';
 
 const LightTheme = {
 
@@ -64,9 +63,7 @@ function App() {
           <main>
             <Header theme={theme} setTheme={setTheme} />
             <AddTodo />
-            <DragDropContext>
-              <TaskList/>
-            </DragDropContext>
+            <TaskList/>
           </main>
         </AppWrapper>
         </ThemeProvider>
