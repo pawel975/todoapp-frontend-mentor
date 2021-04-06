@@ -5,44 +5,44 @@ import { ToDoContext } from '../ToDoContext/ToDoContext';
 const TaskWrapper = styled.div`
     box-sizing: border-box;
     width: 100%;
+    height:3em;
     display:flex;
     align-items:center;
-    border-bottom: 0.5px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid ${props=> props.theme.finished};
+    transition:0.3s ease-in;
     svg{
+        display:block;
         cursor: pointer;
-        height:100%;
-        padding:0.8em;
-        opacity:0.7;
+        padding: 0.5em 1em;
+        background-color: ${props=> props.theme.taskBackground};
+        transition:0.3s ease-in;
         }
     .custom-checkbox {
         cursor: pointer;
         width: 100%;
-        height:3em;
+        height:90%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-items:center;
-        background-color: white;
+        background-color: ${props=> props.theme.taskBackground};
+        transition:0.3s ease-in;
         input {
-            height: inherit;
-            width: 1.6em;
-            margin:0 0 0.1em 1.2em;
-            opacity: 0.4;
             display:none;
         }
-
         span.checkmark {
             margin: 0 0 0 1.2em;
             width:20px;
             height:20px;
             border-radius:50%;
-            border: 1px solid rgba(201, 203, 207, 1);
+            border: 1px solid ${props=> props.theme.finished};
         }
         span.text {
+            color: ${props=> props.theme.task};
             flex-grow:1;
-            opacity:0.6;
+            opacity:1;
             font-size: 12px;
-            font-weight:700;
+            font-weight:400;
             padding: 0 0 0 .8em;
             height:inherit;
             display:flex;
@@ -61,7 +61,7 @@ const TaskWrapper = styled.div`
         border: none;
         
     }
-    .XD {
+    .check-icon {
         color:white;
         font-size: 10px;
         position:relative;
@@ -105,7 +105,7 @@ const handleDelete = (e) => {
             <label className="custom-checkbox">
                 <input onClick={handleChecked} type="radio" checked={completed} />
                 <span className="checkmark">
-                    {completed? <i className="XD fas fa-check"></i> :null}
+                    {completed? <i className="check-icon fas fa-check"></i> :null}
                     </span>
                 <span className={`text ${completed? "completed" : null}`}>{name}</span>
             </label>

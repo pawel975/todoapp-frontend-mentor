@@ -7,6 +7,7 @@ const AddTodoWrapper = styled.div`
     width: 100%;
     height: auto;
     box-shadow: 0 5px 20px 1px rgba(0,0,0,0.1);
+    transition:0.3s ease-in;
     form {
         cursor: pointer;
         border-radius:6px;
@@ -15,7 +16,8 @@ const AddTodoWrapper = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: center;
-        background-color: white;
+        background-color: ${props=> props.theme.taskBackground};
+        transition:0.3s ease-in;
         label {
             display:flex;
             height:100%;
@@ -29,26 +31,27 @@ const AddTodoWrapper = styled.div`
             width:100%;
             border: none;
             text-align: left;
-            color: ${props=> props.theme.clear};
+            background-color: ${props=> props.theme.taskBackground};
+            color: ${props=> props.theme.clearAndFilter};
             font-size: 12px;
             font-weight: 400;
             font-family: 'Josefin Sans', sans-serif;
+            transition:0.3s ease-in;
         }
         .checkmark {
             cursor: pointer;
-            border: 1px solid rgba(201, 203, 207, 1);
+            border: 1px solid ${props=> props.theme.finished};
             align-self: center;
             height: 20px;
             width: 20px;
             border-radius:50%;
             margin: 17px 10px 17px 18px;
             opacity: 1;
-            transition:2s;
+            transition:0.3s ease-in;
         }
 
         .checkmark:hover {
             background: linear-gradient(120deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
-            transition:2s ease-in;
         }
     }
 `

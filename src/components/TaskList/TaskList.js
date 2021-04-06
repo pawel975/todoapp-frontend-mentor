@@ -12,6 +12,11 @@ const TaskListWrapper = styled.div `
     display:flex;
     flex-direction: column;
     align-items:stretch;
+    background-color: ${props=> props.theme.taskBackground};
+    transition:0.3s ease-in;
+    /* outline: 2px solid yellowgreen; */
+    border-radius:5px;
+    overflow: visible;
     section {
         height:10px;
         display:flex;
@@ -21,7 +26,7 @@ const TaskListWrapper = styled.div `
         align-items:center;
         span {
             font-size: 12px;
-            color: ${props=> props.theme.clear};
+            color: ${props=> props.theme.clearAndFilter};
         }
         span.clear-completed {
             cursor :pointer;
@@ -29,7 +34,7 @@ const TaskListWrapper = styled.div `
     }
 `
 const TaskFilters = styled.ul`
-        background-color:white;
+        background-color: ${props=> props.theme.taskBackground};
         box-shadow: 0px 15px 40px 10px rgba(0,0,0,0.1);
         border-radius: 5px;
         display: flex;
@@ -40,9 +45,11 @@ const TaskFilters = styled.ul`
         justify-content:center;
         padding: 0;
         width:100%;
+        transition:0.3s ease-in;
         li {
             margin:1em;
-            color:${props=> props.theme.clear};
+            opacity:0.8;
+            color:${props=> props.theme.clearAndFilter};
         }
         li:hover{
             cursor: pointer;
@@ -50,8 +57,10 @@ const TaskFilters = styled.ul`
 `
 const DragAndDrop = styled.div`
         h5{
-        color: ${props => props.theme.clear};
+        color: ${props => props.theme.clearAndFilter};
         font-weight: 400;
+        opacity:0.8;
+        transition:0.3s ease-in;
         }
 `
 const TaskList = () => {
@@ -62,7 +71,6 @@ const TaskList = () => {
     const AllTasks = tempTasks.map(task=>(
         <Task id={task.id} key={task.id} name={task.name} completed={task.completed}/>
     ))
-
     const tempFilteredTasks = [...filteredTasks]
     const allFilteredTasks = tempFilteredTasks.map(task=>(
         <Task id={task.id} key={task.id} name={task.name} completed={task.completed}/>
