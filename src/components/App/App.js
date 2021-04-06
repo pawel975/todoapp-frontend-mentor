@@ -6,6 +6,7 @@ import ImageLight from '../../../src/images/bg-mobile-light.jpg';
 import ImageDark from '../../../src/images/bg-mobile-dark.jpg';
 import TaskList from '../TaskList/TaskList';
 import {ToDoProvider} from '../ToDoContext/ToDoContext';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const LightTheme = {
 
@@ -15,7 +16,6 @@ const LightTheme = {
     finished: 'hsl(233, 11%, 84%)',
     task: "black",
 }
-
 const DarkTheme = {
     background: 'hsl(235, 21%, 11%)',
     taskBackground: "hsl(235, 24%, 19%)",
@@ -23,7 +23,6 @@ const DarkTheme = {
     finished: 'hsl(237, 14%, 26%)',
     task: "hsl(234, 39%, 85%)",
 }
-
 const themes = {
   light: LightTheme,
   dark: DarkTheme,
@@ -33,7 +32,6 @@ const AppWrapper = styled.div`
   
   font-family: 'Josefin Sans', sans-serif;
   min-height: 100vh;
-  width: auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -66,7 +64,9 @@ function App() {
           <main>
             <Header theme={theme} setTheme={setTheme} />
             <AddTodo />
-            <TaskList/>
+            <DragDropContext>
+              <TaskList/>
+            </DragDropContext>
           </main>
         </AppWrapper>
         </ThemeProvider>

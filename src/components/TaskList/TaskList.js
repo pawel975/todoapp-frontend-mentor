@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import {ToDoContext} from '../ToDoContext/ToDoContext';
 import Task from '../Task/Task'
+import {Droppable} from 'react-beautiful-dnd';
 
 const TaskListWrapper = styled.div `
     margin-top: 1em;
@@ -104,7 +105,9 @@ const TaskList = () => {
             {AllTasks.length > 0 ? 
             <>
                 <TaskListWrapper>
-                    {allFilteredTasks}
+                    <Droppable>
+                        {allFilteredTasks}
+                    </Droppable>
                     <section>
                         <span>{`${allFilteredTasks.length} items left`}</span>
                         <span className="clear-completed" onClick={handleCompletedDelete}>Clear Completed</span>

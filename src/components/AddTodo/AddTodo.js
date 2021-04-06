@@ -11,10 +11,8 @@ const AddTodoWrapper = styled.div`
     form {
         cursor: pointer;
         border-radius:6px;
-        width: 100%;
         height:3em;
         display: flex;
-        flex-direction: row;
         justify-content: center;
         background-color: ${props=> props.theme.taskBackground};
         transition:0.3s ease-in;
@@ -27,6 +25,7 @@ const AddTodoWrapper = styled.div`
             display:none;
         }
         .create-task{
+            border-radius:5px;
             cursor: pointer;
             width:100%;
             border: none;
@@ -46,24 +45,21 @@ const AddTodoWrapper = styled.div`
             width: 20px;
             border-radius:50%;
             margin: 17px 10px 17px 18px;
-            opacity: 1;
             transition:0.3s ease-in;
-        }
-
-        .checkmark:hover {
-            background: linear-gradient(120deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
         }
     }
 `
 function AddTodo() {
 
-    const [tasks, setTasks ] = useContext(ToDoContext)
+    const [tasks, setTasks, filteredTasks, setFilteredTasks, status, setStatus ] = useContext(ToDoContext)
+    
     const [taskValue, setTaskValue] = useState('')
 
     const handleSubmit = (e)=> {
         e.preventDefault()
         if(taskValue === "") return
         // console.log(tasks)
+        setStatus(0)
         setTasks([
             ...tasks,
             {
@@ -85,7 +81,7 @@ function AddTodo() {
             <div>
                 <form autoComplete="off" onSubmit={handleSubmit}>
                     <label>
-                        <input type="radio" className="set-task" onClick={handleSubmit} checked={false}/>
+                        <input type="radio" className="set-task" onClick={handleSubmit}/>
                         <span className="checkmark"></span>
                     </label>
                     <input value={taskValue} onChange={handleTaskValue} type="text" placeholder='Create a new todo...' className="create-task"/>
