@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import AddTodo from '../AddTodo/AddTodo';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from '../Header/Header';
@@ -7,7 +7,9 @@ import ImageMobileDark from '../../../src/images/bg-mobile-dark.jpg';
 import ImageDesktopLight from '../../../src/images/bg-desktop-light.jpg';
 import ImageDesktopDark from '../../../src/images/bg-desktop-dark.jpg';
 import TaskList from '../TaskList/TaskList';
-import {ToDoProvider} from '../ToDoContext/ToDoContext';
+import {ToDoContext, ToDoProvider} from '../ToDoContext/ToDoContext';
+
+
 
 const LightTheme = {
 
@@ -74,7 +76,7 @@ const AppWrapper = styled.div`
     display:initial;
   };
   main {
-    max-width:500px;
+    max-width:700px;
     top:-3.5em;
   }
   }
@@ -92,7 +94,7 @@ const AppWrapper = styled.div`
   }
 `
 function App() {
-
+  
   const [theme, setTheme] = useState("dark");
 
   return (

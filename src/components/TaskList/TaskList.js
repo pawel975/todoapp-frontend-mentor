@@ -67,6 +67,28 @@ const TaskList = () => {
 
     const [tasks, setTasks, filteredTasks, setFilteredTasks, status, setStatus] = useContext(ToDoContext)
 
+    useEffect(()=> {
+        getLocalTasks();
+      },[])
+    
+      useEffect(()=> {
+        saveLocalTasks();
+      },[tasks, status])
+    
+    
+      const saveLocalTasks = () => {
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+      };
+    
+      const getLocalTasks = () => {
+        if(localStorage.getItem("tasks") === null) {
+          localStorage.setItem("tasks", JSON.stringify([]));
+        } else {
+          let taskLocal = JSON.parse(localStorage.getItem("tasks"))
+          setTasks(taskLocal)
+        }
+      }
+
     const tempTasks = [...tasks]
     const AllTasks = tempTasks.map(task=>(
         <Task id={task.id} key={task.id} name={task.name} completed={task.completed}/>
