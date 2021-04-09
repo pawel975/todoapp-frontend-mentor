@@ -81,7 +81,7 @@ function AddTodo() {
             <div>
                 <form autoComplete="off" onSubmit={handleSubmit}>
                     <label>
-                        <input type="radio" className="set-task" onClick={handleSubmit}/>
+                        <button className="set-task" onClick={handleSubmit}></button>
                         <span className="checkmark"></span>
                     </label>
                     <input value={taskValue} onChange={handleTaskValue} type="text" placeholder='Create a new todo...' className="create-task"/>

@@ -95,7 +95,28 @@ const AppWrapper = styled.div`
 `
 function App() {
   
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
+
+    useEffect(()=> {
+        getLocalTheme();
+      },[])
+    
+    useEffect(()=> {
+        saveLocalTheme();
+      },[theme])
+    
+    
+      const saveLocalTheme = () => {
+        localStorage.setItem("theme", JSON.stringify(theme))
+        // It converts JS theme value to JSON so it could be saved in local storage as a string
+      };
+    
+      const getLocalTheme = () => {
+          let themeLocal = JSON.parse(localStorage.getItem("theme"))
+          setTheme(themeLocal)
+          //converts JSON local storage string to JS value so it could be set as a theme
+        }
+      
 
   return (
       <ToDoProvider>
