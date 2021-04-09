@@ -22,8 +22,27 @@ const AddTodoWrapper = styled.div`
             width:50px;
         }
         .set-task {
-            display:none;
+            cursor: pointer;
+            border: 1px solid ${props=> props.theme.finished};
+            align-self: center;
+            height: 20px;
+            width: 20px;
+            border-radius:50%;
+            margin: 17px 10px 17px 18px;
+            transition:0.3s ease-in;
+            background-color:transparent;
         }
+
+        .set-task:focus {
+            background: linear-gradient(120deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+;   
+        }
+
+        .set-task:hover {
+            background: linear-gradient(120deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+;   
+        }
+
         .create-task{
             border-radius:5px;
             cursor: pointer;
@@ -38,14 +57,7 @@ const AddTodoWrapper = styled.div`
             transition:0.3s ease-in;
         }
         .checkmark {
-            cursor: pointer;
-            border: 1px solid ${props=> props.theme.finished};
-            align-self: center;
-            height: 20px;
-            width: 20px;
-            border-radius:50%;
-            margin: 17px 10px 17px 18px;
-            transition:0.3s ease-in;
+
         }
     }
 `
